@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import FormularioDemanda from './components/FormularioDemanda';
+import ListaDemandas from './components/ListaDemandas';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  constructor(props){
+    super(props)
+    //Estado inicial
+    this.state = {opcao : 'consultar'}
+  }
+
+  render () {
+
+    return (
+      <div>
+        <button onClick={() => this.setState({opcao : 'consultar'})}>Consultar Backlog</button>
+        <button onClick={() => this.setState({opcao : 'solicitar'})}>Solicitar Automação</button>
+        <p>{this.state.opcao}</p>
+
+        {this.state.opcao === "consultar" ? (
+          <ListaDemandas />
+        ) : (
+          <FormularioDemanda />
+        )}
+      </div>
+    )
+  }
 }
 
 export default App;
