@@ -1,38 +1,46 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react'
+import { useEffect } from 'react';
 import api from '../api'
 
-class ListaTarefas extends Component {
+const ListaTarefas = (props) => {
 
-    state = {
-        tarefas: [],
-    }
+    const [tarefas, setTarefas] = useState([]);
+    const [exibir, setExibir] = useState(props.exibir);
 
-    async componentDidMount(){
-        const response = await api.get('/tarefasDaDemanda/' + this.props.cd_demanda)
-        this.setState({ tarefas: response.data})
-    }
+    useEffect(() => {        
+        api.get('/tarefasDaDemanda/' + props.cd_demanda)
+        .then((response) => {
+            setTarefas(response.data)
+            // console.log(tarefas)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }, [props.idAtual, props.cd_demanda])
 
-    render () {
-
-        const {tarefas} = this.state;
-
-        return (
+  return (
+    <div>
+        {exibir === 'false' ? (
             <div>
-                {console.log('Vai listar as tarefas da demandas com ID ' + this.props.cd_demanda)}
-                <h2>Etapa {this.props.cd_demanda}</h2>
-                {console.log(tarefas)}
-                {tarefas.map(tarefa => (
-                    <div key={tarefa.id} className='tarefa'>
-                        <ul>
-                            <li>
-                                <h3>Etapa: {tarefa.descricao}</h3>
-                            </li>
-                        </ul>
-                    </div>
-                ))}
+                <button onClick={() => setExibir('true')}>Exibir tarefas</button>
             </div>
-        )
-    }
+        ) : (
+            <div>
+                <button onClick={() => setExibir('false')}>Ocultar tarefas</button>
+                {console.log('Vai listar as tarefas da demandas com ID ' + props.cd_demanda)}
+                <h2>Etapas da demanda {props.cd_demanda}</h2>
+                {console.log(tarefas)}
+                <ul>
+                    {tarefas.map(tarefa => (
+                        <li key={tarefa.id} className='tarefa'>
+                            <h3>Etapa: {tarefa.descricao}</h3>
+                        </li>
+                    ))}   
+                </ul>
+            </div>
+        )}
+    </div>
+  )
 }
 
-export default ListaTarefas;
+export default ListaTarefas

@@ -1,31 +1,51 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react'
 import FormularioDemanda from './components/FormularioDemanda';
+import InsereTarefa from './components/InsereTarefa';
 import ListaDemandas from './components/ListaDemandas';
 
-class App extends Component {
+const App = () => {
 
-  constructor(props){
-    super(props)
-    //Estado inicial
-    this.state = {opcao : 'consultar'}
+  const [opcao, setOpcao] = useState('handleDemandas')
+  const [idDemanda, setIdDemanda] = useState()
+
+  function defineOpcao(retorno) {
+    setOpcao(retorno)
   }
 
-  render () {
+  function defineDemanda(id){
+    setIdDemanda(id)
+    console.log('Demanda definida: ' + id)
+  }
 
-    return (
+  return (
+    <div>
       <div>
-        <button onClick={() => this.setState({opcao : 'consultar'})}>Consultar Backlog</button>
-        <button onClick={() => this.setState({opcao : 'solicitar'})}>Solicitar Automação</button>
-        <p>{this.state.opcao}</p>
+        <button onClick={() => setOpcao('handleDemandas')}>Demandas</button>
+        <button onClick={() => setOpcao('taskInsert')}>Solicitar Automação</button>
+        <p>{opcao}</p>
 
-        {this.state.opcao === "consultar" ? (
-          <ListaDemandas />
+        {opcao === 'handleDemandas' ? (
+          <div>
+            <FormularioDemanda defineDemanda={defineDemanda} defineOpcao={defineOpcao} />
+            <ListaDemandas defineDemanda={defineDemanda} defineOpcao={defineOpcao}/>
+          </div>
         ) : (
-          <FormularioDemanda />
+          <div>
+            {opcao === 'taskInsert' ? (
+              <div>
+                <p>Tá na sessão TaskInsert</p>
+                <InsereTarefa cd_demanda={idDemanda} defineDemanda={defineDemanda} defineOpcao={defineOpcao} />
+              </div>
+            ) : (
+              <div>
+                
+              </div>
+            )}
+          </div>
         )}
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-export default App;
+export default App

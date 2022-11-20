@@ -1,43 +1,45 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../api'
 import ListaTarefas from './ListaTarefas'
 
-class ListaDemandas extends Component {
+const ListaDemandas = (props) => {
 
-  state = {
-    demandas: [],
+  const [demandas, setDemandas] = useState([]);
+
+  useEffect(() => {
+    api.get('/demanda')
+    .then((response) => {
+      setDemandas(response.data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+    //incluir []?
+  }, [])
+
+  function handleClick(idDemanda) {
+    console.log('Vai editar a demanda:' + idDemanda)
+    props.defineDemanda(idDemanda)
+    props.defineOpcao('taskInsert')
   }
 
-  async componentDidMount(){
-    const response = await api.get('/demanda')
-    // const response = await api.get('/tarefasDaDemanda/2')
-    this.setState({ demandas: response.data})
-  }
-
-  render () {
-
-    const { demandas } = this.state;
-
-    return (
-      <div>
-        <h1>Lista de Demandas</h1>
-        {console.log(demandas)}
+  return (
+    <div>
+      <h1>Lista de Demandas</h1>
+      {console.log( demandas)}
+      <ul>
         {demandas.map(demanda => (
-          <div key={ demanda.id } className='demanda'>
-            <ul>
-              <li>
-                <h2>Processo: {demanda.processo}</h2>
-                <p>Área: {demanda.area}, {demanda.id}</p>
+          <li key={ demanda.id } className='demanda'>
+            <h2>Processo: {demanda.processo}</h2>
+            <p>Área: {demanda.area}, {demanda.id}</p>
 
-                <ListaTarefas cd_demanda={demanda.id} />
-
-              </li>
-            </ul>
-          </div>
+            <ListaTarefas cd_demanda={demanda.id} exibir='false'/>
+            <button onClick={(e)=>{e.preventDefault();handleClick(demanda.id)}}>Editar Demanda</button>
+          </li>
         ))}
-      </div>
-    )
-  }
+      </ul>
+    </div>
+  )
 }
 
-export default ListaDemandas;
+export default ListaDemandas
