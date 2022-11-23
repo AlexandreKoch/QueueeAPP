@@ -21,19 +21,19 @@ const ListaTarefas = (props) => {
   return (
     <div>
         {exibir === 'false' ? (
-            <div>
-                <button onClick={() => setExibir('true')}>Exibir tarefas</button>
+            <div className='listaTarefas'>
+                <button className='exibirTarefas' onClick={() => setExibir('true')}>Exibir tarefas</button>
             </div>
         ) : (
-            <div>
-                <button onClick={() => setExibir('false')}>Ocultar tarefas</button>
+            <div className='listaTarefas'>
+                <button className='exibirTarefas' onClick={() => setExibir('false')}>Ocultar tarefas</button>
                 {console.log('Vai listar as tarefas da demandas com ID ' + props.cd_demanda)}
-                <h2>Etapas da demanda {props.cd_demanda}</h2>
+                <h2>Etapas do processo:</h2>
                 {console.log(tarefas)}
                 <ul>
                     {tarefas.map(tarefa => (
                         <li key={tarefa.id} className='tarefa'>
-                            <h3>Etapa: {tarefa.descricao}</h3>
+                            <p>Etapa: {tarefa.descricao}</p>
                         </li>
                     ))}   
                 </ul>

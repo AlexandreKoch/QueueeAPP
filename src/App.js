@@ -2,10 +2,11 @@ import React, {useState} from 'react'
 import FormularioDemanda from './components/FormularioDemanda';
 import InsereTarefa from './components/InsereTarefa';
 import ListaDemandas from './components/ListaDemandas';
+import Navigator from './components/Navigator';
 
 const App = () => {
 
-  const [opcao, setOpcao] = useState('handleDemandas')
+  const [opcao, setOpcao] = useState('listaDemandas')
   const [idDemanda, setIdDemanda] = useState()
 
   function defineOpcao(retorno) {
@@ -18,27 +19,36 @@ const App = () => {
   }
 
   return (
-    <div>
-      <div>
-        <button onClick={() => setOpcao('handleDemandas')}>Demandas</button>
-        <button onClick={() => setOpcao('taskInsert')}>Solicitar Automação</button>
-        <p>{opcao}</p>
+    <div className='body'>
+      <div className='navigator'>
+        <Navigator defineOpcao={defineOpcao}/>
+      </div>
+      <div className='core_body'>
+        {/* <button onClick={() => setOpcao('handleDemandas')}>Demandas</button> */}
+        {/* <button onClick={() => setOpcao('taskInsert')}>Solicitar Automação</button> */}
+        {/* <p>{opcao}</p> */}
 
         {opcao === 'handleDemandas' ? (
           <div>
-            <FormularioDemanda defineDemanda={defineDemanda} defineOpcao={defineOpcao} />
-            <ListaDemandas defineDemanda={defineDemanda} defineOpcao={defineOpcao}/>
+            <FormularioDemanda 
+              defineDemanda={defineDemanda}
+              defineOpcao={defineOpcao} />
+            {/* <ListaDemandas defineDemanda={defineDemanda} defineOpcao={defineOpcao}/> */}
           </div>
         ) : (
           <div>
             {opcao === 'taskInsert' ? (
               <div>
-                <p>Tá na sessão TaskInsert</p>
-                <InsereTarefa cd_demanda={idDemanda} defineDemanda={defineDemanda} defineOpcao={defineOpcao} />
+                <InsereTarefa 
+                  cd_demanda={idDemanda} 
+                  defineDemanda={defineDemanda} 
+                  defineOpcao={defineOpcao} />
               </div>
             ) : (
               <div>
-                
+                <ListaDemandas 
+                  defineDemanda={defineDemanda} 
+                  defineOpcao={defineOpcao}/>
               </div>
             )}
           </div>

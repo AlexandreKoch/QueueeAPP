@@ -31,47 +31,49 @@ const FormularioTarefa = (props) => {
     }
 
   return (
-    <div>
-        <p>Informe as etapas do processo</p>
-        <form className='formulario' onSubmit={handleSubmit}>
-            <fieldset>
-                <div className='input_box'>
-                    <label htmlFor="descricao">Descrição da etapa: </label>
-                    <input type="text" name="descricao" id="descricao" required onChange={onChange}/>
-                </div>
-            </fieldset>
+    <div className='formTarefa'>
+        {/* <h1 className='tituloSessao'>Detalhamento da automação</h1> */}
+        
+        <div className='form'>
+            <div className='form_box'>
+                <form className='formulario' onSubmit={handleSubmit}>
+                    <fieldset>
+                        <p>Informe da etapa</p>
+                        <div className='input_box'>
+                            <label htmlFor="descricao">Descrição da etapa:<br/></label>
+                            <input type="text" name="descricao" id="descricao" required onChange={onChange}/>
+                        </div>
+                    
+                        <div className='input_box'>
+                            <label htmlFor="cd_tipo">Informe qual recurso é utilizado para realizada a etapa:<br/></label>
+                            <select name="cd_tipo" id="cd_tipo" onChange={onChange}>
+                                <option defaultValue value="">Selecione</option>
+                                <option value="1">Interação com telas</option>
+                                <option value="2">Sites</option>
+                                <option value="3">Regras</option>
+                                <option value="4">Programas</option>
+                                <option value="5">Serviços e API's</option>
+                            </select>
+                        </div>
 
-            <fieldset>
-                <div className='input_box'>
-                    <label htmlFor="cd_tipo">Informe o tipo de tarefa desta etapa: </label>
-                    <select name="cd_tipo" id="cd_tipo" onChange={onChange}>
-                        <option defaultValue value="">Selecione</option>
-                        <option value="1">Interação com telas</option>
-                        <option value="2">Sites</option>
-                        <option value="3">Regras</option>
-                        <option value="4">Programas</option>
-                        <option value="5">Serviços e API's</option>
-                    </select>
-                </div>
-            </fieldset>
+                        <div className='input_box'>
+                            <label htmlFor="cd_complexidade">Qual a complexidade desta etapa:<br/></label>
+                            <select name="cd_complexidade" id="cd_complexidade" onChange={onChange}>
+                                <option defaultValue value="1">Muito baixa</option>
+                                <option value="2">Baixa</option>
+                                <option value="3">Média</option>
+                                <option value="4">Alta</option>
+                                <option value="5">Muito alta</option>
+                            </select>
+                        </div>
+                    </fieldset>
 
-            <fieldset>
-                <div className='input_box'>
-                    <label htmlFor="cd_complexidade">Qual a complexidade desta etapa: </label>
-                    <select name="cd_complexidade" id="cd_complexidade" onChange={onChange}>
-                        <option defaultValue value="1">Muito baixa</option>
-                        <option value="2">Baixa</option>
-                        <option value="3">Média</option>
-                        <option value="4">Alta</option>
-                        <option value="5">Muito alta</option>
-                    </select>
-                </div>
-            </fieldset>
-
-            <button type='submit'>
-                Salvar
-              </button>
-        </form>
+                    <button id='submitTarefa' type='submit'>
+                        Salvar
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import FormularioEdicaoDemanda from './FormularioEdicaoDemanda';
+// import FormularioEdicaoDemanda from './FormularioEdicaoDemanda';
 import FormularioTarefa from './FormularioTarefa';
 import ListaTarefas from './ListaTarefas';
 // import api from '../api'
@@ -13,21 +13,23 @@ const InsereTarefa = (props) => {
     }
 
    return (
-        <div>
-            <button>Fechar</button>
-            <p>ID atual: {idAtual}</p>
-            <FormularioEdicaoDemanda 
+        <div className='tarefasDemanda'>
+            <h1 className='tituloSessao'>Dados da demanda</h1>
+            
+            {/* <p>ID atual: {idAtual}</p> */}
+            {/* <FormularioEdicaoDemanda 
+                cd_demanda={props.cd_demanda}
                 defineDemanda={props.defineDemanda} 
-                defineOpcao={props.defineOpcao}/>
+                defineOpcao={props.defineOpcao}/> */}
             <FormularioTarefa 
                 cd_demanda={props.cd_demanda}
                 updateIdAtual={updateIdAtual} />
-            <p>Props.cd_demanda: </p>
-            <p>{props.cd_demanda}</p>
-            <ListaTarefas 
-                cd_demanda={props.cd_demanda}
-                idAtual = {idAtual}
-                exibir='true'/>
+            <div className='editaListaTarefas'>
+                <ListaTarefas 
+                    cd_demanda={props.cd_demanda}
+                    idAtual = {idAtual}
+                    exibir='true'/>
+            </div>
         </div>
   )
 }
