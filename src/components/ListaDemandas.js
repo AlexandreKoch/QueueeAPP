@@ -5,9 +5,11 @@ import ListaTarefas from './ListaTarefas'
 const ListaDemandas = (props) => {
 
   const [demandas, setDemandas] = useState([]);
+  const [orderBy, setOrderBy] = useState(['saving'])
 
   useEffect(() => {
-    api.get('/demanda')
+    // api.get('/demanda')
+    api.get('/demanda/' + orderBy)
     .then((response) => {
       setDemandas(response.data)
     })
@@ -15,7 +17,7 @@ const ListaDemandas = (props) => {
       console.log(error)
     })
     //incluir []?
-  }, [])
+  }, [orderBy])
 
   function handleClick(idDemanda) {
     console.log('Vai editar a demanda:' + idDemanda)
@@ -26,7 +28,16 @@ const ListaDemandas = (props) => {
   return (
     <div className='listaDemandas'>
       {/* <button onClick={(e)=>{e.preventDefault();props.defineOpcao('handleDemandas')}}>Solicitar demanda</button> */}
-      <h1 className='tituloSessao'>Backlog</h1>
+      <div>
+          <h1 className='tituloSessao'>Backlog</h1>
+          <div className='form_box'>
+              <label htmlFor="order_by">Ordenar por:<br/></label>
+              <select name="order_by" id="order_by" onChange={(e)=>{setOrderBy(e.target.value);console.log(orderBy)}}>
+                  <option defaultValue value="saving">Saving</option>
+		              <option value="criticidade">Criticidade</option>
+              </select>
+          </div>
+      </div>
       {console.log( demandas)}
       <ul>
         {demandas.map(demanda => (
@@ -34,7 +45,11 @@ const ListaDemandas = (props) => {
             <div className='nomeProcessoEStatus'>
                 <div className='subDiv'>
                     <h2 className='nomeProcesso'>{demanda.processo}</h2>
-                    <p className='statusProcesso'><br/><strong>{demanda.status}</strong></p>
+                    {demanda.status === 'Indeferido' ? (
+                        <p className='statusProcessoIndeferido'><br/><strong>{demanda.status}</strong></p>    
+                    ) : (
+                        <p className='statusProcesso'><br/><strong>{demanda.status}</strong></p>
+                    )}
                 </div>
             </div>
             

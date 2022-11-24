@@ -64,7 +64,7 @@ const FormularioDemanda = ({defineOpcao, defineDemanda}) => {
               <div className='form_box'>
                   <form className='formulario' onSubmit={onSubmit}>
                     <fieldset>
-                      <p>Sobre a Solicitação</p>
+                      <p>Sobre a solicitação</p>
                       <div className='input_box'>
                         <label htmlFor="solicitante">Solicitante:<br/></label>
                         <input type="text" name="solicitante" id="solicitante" required onChange={onChange}/>

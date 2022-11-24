@@ -27,7 +27,6 @@ const FormularioTarefa = (props) => {
             console.log('Deu erro no POST da FormularioTarefa')
             console.log(error.response.data.erro)
         })
-        
     }
 
   return (
@@ -45,7 +44,7 @@ const FormularioTarefa = (props) => {
                         </div>
                     
                         <div className='input_box'>
-                            <label htmlFor="cd_tipo">Informe qual recurso é utilizado para realizada a etapa:<br/></label>
+                            <label htmlFor="cd_tipo">Informe qual recurso é utilizado para executar a etapa:<br/></label>
                             <select name="cd_tipo" id="cd_tipo" onChange={onChange}>
                                 <option defaultValue value="">Selecione</option>
                                 <option value="1">Interação com telas</option>

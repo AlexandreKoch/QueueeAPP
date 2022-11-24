@@ -22,11 +22,11 @@ const ListaTarefas = (props) => {
     <div>
         {exibir === 'false' ? (
             <div className='listaTarefas'>
-                <button className='exibirTarefas' onClick={() => setExibir('true')}>Exibir tarefas</button>
+                <button className='exibirTarefas' onClick={() => setExibir('true')}>Exibir etapas</button>
             </div>
         ) : (
             <div className='listaTarefas'>
-                <button className='exibirTarefas' onClick={() => setExibir('false')}>Ocultar tarefas</button>
+                <button className='exibirTarefas' onClick={() => setExibir('false')}>Ocultar etapas</button>
                 {console.log('Vai listar as tarefas da demandas com ID ' + props.cd_demanda)}
                 <h2>Etapas do processo:</h2>
                 {console.log(tarefas)}

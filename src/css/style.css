@@ -6,6 +6,11 @@
     /* box-sizing: border-box; */
 }
 
+.all{
+    height: 100%;
+    width: 100%;
+}
+
 html {
     background-color: rgb(255, 255, 255); /* branco */
     font-family: 'Sans Pro','Arial', sans-serif;
@@ -170,6 +175,17 @@ img{
     width: 160px;
 }
 
+.statusProcessoIndeferido{
+    color: white;
+    /* background-color: red; */
+    background-color: rgb(78,48,111); /* roxo menos escuro */
+    display: flex;
+    justify-content: center;
+    margin-right: 50px;
+    height: 30px;
+    width: 160px;
+}
+
 .infosDemanda{
     color: rgb(78,48,111);
     margin-top: 10px;
@@ -262,6 +278,11 @@ fieldset p{
 }
 
 .exibirTarefas{
+    margin-bottom: 20px;
+}
+
+.finalizar{
+    float: right;
     margin-bottom: 20px;
 }
 

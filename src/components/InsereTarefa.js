@@ -29,6 +29,9 @@ const InsereTarefa = (props) => {
                     cd_demanda={props.cd_demanda}
                     idAtual = {idAtual}
                     exibir='true'/>
+                <button className='finalizar' onClick={(e)=>{e.preventDefault();alert('A sua demanda foi cadastrada e encontra-se no Backlog');props.defineOpcao('')}}>
+                    Finalizar
+                </button>
             </div>
         </div>
   )
