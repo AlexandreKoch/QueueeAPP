@@ -24,9 +24,6 @@ const App = () => {
         <Navigator defineOpcao={defineOpcao}/>
       </div>
       <div className='core_body'>
-        {/* <button onClick={() => setOpcao('handleDemandas')}>Demandas</button> */}
-        {/* <button onClick={() => setOpcao('taskInsert')}>Solicitar Automação</button> */}
-        {/* <p>{opcao}</p> */}
 
         {opcao === 'handleDemandas' ? (
           <div>

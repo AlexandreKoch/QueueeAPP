@@ -5,11 +5,11 @@ import ListaTarefas from './ListaTarefas'
 const ListaDemandas = (props) => {
 
   const [demandas, setDemandas] = useState([]);
-  const [orderBy, setOrderBy] = useState(['saving'])
+  const [orderBy, setOrderBy] = useState(['1'])
 
   useEffect(() => {
     // api.get('/demanda')
-    api.get('/demanda/' + orderBy)
+    api.get('/listaDemanda/' + orderBy)
     .then((response) => {
       setDemandas(response.data)
     })
@@ -33,8 +33,8 @@ const ListaDemandas = (props) => {
           <div className='form_box'>
               <label htmlFor="order_by">Ordenar por:<br/></label>
               <select name="order_by" id="order_by" onChange={(e)=>{setOrderBy(e.target.value);console.log(orderBy)}}>
-                  <option defaultValue value="saving">Saving</option>
-		              <option value="criticidade">Criticidade</option>
+                  <option defaultValue value="1">Saving</option>
+		              <option value="2">Criticidade</option>
               </select>
           </div>
       </div>

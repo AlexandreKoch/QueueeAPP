@@ -7,8 +7,11 @@
 }
 
 .all{
-    height: 100%;
+    height: 100vh;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 html {
@@ -87,7 +90,8 @@ padding: 0px;
     background-color: rgb(0,155,98); /* Verde escuro */
     display: flex;
     justify-content: center;
-    width: 100%;    
+    width: 100%;
+    height: 10vh;
 }
 
 .headerContent{    
@@ -128,6 +132,7 @@ img{
     background-color: rgb(177,211,75); /* verde claro */
     width: 25vw;
     max-width: 300px;
+    min-height: 87vh;
 }
 
 .menu{
@@ -139,9 +144,10 @@ img{
 .core_body{
     /* background-color: rgb(222, 222, 222); */
     background-color: rgb(255, 255, 255);
-    width: 75vw;
-    max-width: 700px;
+    /* width: 75vw; */
+    /* max-width: 700px; */
     min-width: 250px;
+    max-height: 100%;
 }
 
 /* BACKLOG */
@@ -291,5 +297,6 @@ fieldset p{
 /* =========================== */
 .footer{
     background-color: rgb(0,155,98); /* Verde escuro */
+    height: 3vh;
 }
 

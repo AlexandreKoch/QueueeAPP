@@ -9,7 +9,7 @@ const Header = () => {
                   <img src='img/QueueeLogo2.png' alt="Logo da aplicação" />
               </figure>
               <h1>Queuee</h1>
-              <p>Foque nas suas prioridades!</p>
+              <p>Mantendo o foco nas prioridades</p>
           </div>
       </div>
     </>

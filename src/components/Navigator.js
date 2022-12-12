@@ -4,7 +4,8 @@ const Navigator = (props) => {
   return (
     <div className='aside'>
         <ul className='menu'>
-            <li><button className='navButton' onClick={() => props.defineOpcao('taskInsert')}>Home</button></li>
+            {/* <li><button className='navButton' onClick={() => props.defineOpcao('taskInsert')}>Home</button></li> */}
+            <li><button className='navButton' onClick={() => props.defineOpcao('')}>Home</button></li>
             <li><button className='navButton' onClick={() => props.defineOpcao('handleDemandas')}>Solicitar automação</button></li>
             <li><button className='navButton' onClick={() => props.defineOpcao('')}>Backlog</button></li>
             <li><button className='navButton'>Orientações</button></li>
